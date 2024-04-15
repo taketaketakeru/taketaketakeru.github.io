@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>04 队列</title>
+    <meta name="description" content="队列。没错就是咱平常排队，第一个来的第一个走">
+    <meta name="keywords" content='blog, gokarna, hugo, 数据结构'>
+
+    <meta property="og:url" content="https://taketaketakeru.github.io/posts/04-%E9%98%9F%E5%88%97/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="04 队列">
+    <meta property="og:description" content="队列。没错就是咱平常排队，第一个来的第一个走">
+    <meta property="og:image" content="https://taketaketakeru.github.io/images/avatar.webp">
+    <meta property="og:image:secure_url" content="https://taketaketakeru.github.io/images/avatar.webp">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="04 队列">
+    <meta name="twitter:description" content="队列。没错就是咱平常排队，第一个来的第一个走">
+    <meta property="twitter:domain" content="https://taketaketakeru.github.io/posts/04-%E9%98%9F%E5%88%97/">
+    <meta property="twitter:url" content="https://taketaketakeru.github.io/posts/04-%E9%98%9F%E5%88%97/">
+    <meta name="twitter:image" content="https://taketaketakeru.github.io/images/avatar.webp">
+
+    
+    <link rel="canonical" href="https://taketaketakeru.github.io/posts/04-%E9%98%9F%E5%88%97/" />
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.315e3e4471e2465f34b6c92d59edceac6f6b3d3844df51bbaac4e5f7227b04e4.js" integrity="sha256-MV4&#43;RHHiRl80tsktWe3OrG9rPThE31G7qsTl9yJ7BOQ="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script type="text/javascript">
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://taketaketakeru.github.io/">
+                <img src='/images/avatar.webp' alt="avatar" />
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://taketaketakeru.github.io/">Takeru&#39;s Blog</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/"><span data-feather='home'></span> Home </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/posts/"><span data-feather='book'></span> Posts </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/tags/"><span data-feather='tag'></span> Tags </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/plans/"><span data-feather='code'></span> Plans </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/about/"><span data-feather='coffee'></span> About </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span id="dark-theme-toggle-screen-reader-target" class="sr-only"></span>
+                <a>
+                    <span id="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span id="hamburger-menu-toggle-screen-reader-target" class="sr-only">menu</span>
+                <a>
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/"><span data-feather='home'></span> Home </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/posts/"><span data-feather='book'></span> Posts </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/tags/"><span data-feather='tag'></span> Tags </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/plans/"><span data-feather='code'></span> Plans </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/about/"><span data-feather='coffee'></span> About </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span id="dark-theme-toggle-screen-reader-target" class="sr-only">theme</span>
+                    <a>
+                        <span id="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>04 队列</h1>
+        <small role="doc-subtitle">队列。没错就是咱平常排队，第一个来的第一个走</small>
+        <p class="post-date">三月 9, 2022
+        
+        </p>
+
+        <ul class="post-tags">
+        
+            <li class="post-tag"><a href="https://taketaketakeru.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a></li>
+        
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h1 id="队列和栈">队列和栈</h1>
+<p>前面讲了线性和链式结构，如果你顺利掌握了，下边的队列和栈就小菜一碟了。因为我们会用前两章讲到的东西来实现队列和栈。
+之所以放到一起讲是因为这两个东西很类似，队列是先进先出结构(FIFO, first in first out)，
+栈是后进先出结构(LIFO, last in first out)。</p>
+<p>生活中的数据结构：</p>
+<ul>
+<li>队列。没错就是咱平常排队，第一个来的第一个走</li>
+</ul>
+<p>本章我们详细讲讲常用的队列</p>
+<h1 id="队列-queue">队列 Queue</h1>
+<p>这里卖个关子，如果你熟悉了上两节讲的内容，这里你会选取哪个数据结构作为队列的底层存储？
+还记得第一章讲的如何实现 ADT 吗？我视频了说了三个注意事项：</p>
+<ul>
+<li>1.如何选用恰当的数据结构作为存储？</li>
+<li>2.选取的数据结构能否满足 ADT 的功能需求</li>
+<li>3.实现效率如何？</li>
+</ul>
+<p>我们先来看看 list 可以不？对照这个三个需求，看看能否满足：</p>
+<ul>
+<li>1.我们选择了 list</li>
+<li>2.看起来队列需要从头删除，向尾部增加元素，也就是 list.pop(0) 和 list.append(element)</li>
+<li>3.嗯，貌似 list.pop(0) 会导致所有其后所有元素向前移动一个位置，O(n)复杂度。append 平均倒是O(1)，但是如果内存不够还要重新分配内存。</li>
+</ul>
+<p>你看，使用了 list 的话频繁 pop(0) 是非常低效的。(当然list 实现还有另一种方式就是插入用 list.insert(0, item)，删除用list.pop())</p>
+<p>脑子再转转， 我们第二章实现了 链表 LinkedList，看看能否满足要求：</p>
+<ul>
+<li>1.这里选择 LinkedList</li>
+<li>2.删除头元素 LinkedList.popleft()，追加 append(element)。都可以满足</li>
+<li>3.哇欧，这两个操作都是 O(1) 的，完美。</li>
+</ul>
+<p>好， 就用 LinkedList 了，我们开始实现，具体看视频。这次实现我们还将演示自定义异常和测试异常。</p>
+<h1 id="用数组实现队列">用数组实现队列</h1>
+<p>难道用数组就不能实现队列了吗？其实还是可以的。只不过数组是预先分配固定内存的，所以如果你知道了队列的最大长度，也是
+可以用数组来实现的。</p>
+<p>想象一下，队列就俩操作，进进出出，一进一出，pop 和 push 操作。
+似乎只要两个下标 head, tail 就可以了。 当我们 push 的时候赋值并且前移 head，pop 的时候前移 tail 就可以了。你可以在纸上
+模拟下试试。列队的长度就是 head-pop，这个长度必须不能大于初始化的最大程度。</p>
+<p>如果 head 先到了数组末尾咋办？重头来呗，只要我们保证 tail 不会超过 head 就行。</p>
+<p>head = 0,1,2,3,4 &hellip; 0,1,2,3,4 &hellip;</p>
+<p>重头再来，循环往复，仿佛一个轮回。。。。
+怎么重头来呢？看上边数组的规律你如果还想不起来用取模，估计小学数学是体育老师教的。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>maxsize <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">100</span>):
+</span></span><span style="display:flex;"><span>    print(i <span style="color:#f92672">%</span> maxsize)
+</span></span></code></pre></div><p><img src="./array_queue.png" alt=""></p>
+<p>我们来实现一个空间有限的循环队列。ArrayQueue，它的实现很简单，但是缺点是需要预先知道队列的长度来分配内存。</p>
+<h1 id="双端队列-double-ended-queue">双端队列 Double ended Queue</h1>
+<p>看了视频相信你已经会实现队列了，你可能还听过双端队列。上边讲到的队列 队头出，尾尾进，我们如果想头部和尾巴都能进能出呢？
+这就是双端队列了，如果你用过 collections.deque 模块，就是这个东西。他能高效在两头操作。</p>
+<p>假如让你实现你能想起来嘛？
+似乎我们需要一个能 append()  appendleft() popleft() pop() 都是 O(1) 的数据结构。</p>
+<p>上边我们实现 队列的 LinkedList 可以吗？貌似就差一个 pop() 最后边的元素无法实现了。
+对，我们还有双端链表。它有这几个方法：</p>
+<ul>
+<li>append</li>
+<li>appendleft</li>
+<li>headnode()</li>
+<li>tailnode()</li>
+<li>remove(node)    # O(1)</li>
+</ul>
+<p>啊哈，似乎删除头尾都可以啦，而且都是 O(1) 的，完美。
+交给你一个艰巨的任务，实现双端队列 Deque（） ADT。你可以参考前几章的任何代码，挑战一下这个任务，别忘记写单元测试呦。当然如果没想出来也没关系，后边我们实现栈的时候还会用到它，那里我们会实现这个代码。</p>
+<h1 id="思考题">思考题</h1>
+<ul>
+<li>你能用 python 的 deque 来实现 queue ADT 吗？</li>
+<li>哪些经典算法里用到了队列呢？</li>
+</ul>
+
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+    <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="topFunction()" title="Go to top">
+        
+        <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+    </svg>
+    <script>
+        let backToTopButton = document.getElementById("btt-button");
+
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        }
+
+        function topFunction() {
+            smoothScrollToTop();
+        }
+
+        function smoothScrollToTop() {
+            const scrollToTop = () => {
+                const c = document.documentElement.scrollTop || document.body.scrollTop;
+                if (c > 0) {
+                    window.requestAnimationFrame(scrollToTop);
+                    window.scrollTo(0, c - c / 8);
+                }
+            };
+            scrollToTop();
+        }
+    </script>
+    
+    
+</div>
+
+<aside class="post-toc">
+    <nav id="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#队列和栈">队列和栈</a></li>
+    <li><a href="#队列-queue">队列 Queue</a></li>
+    <li><a href="#用数组实现队列">用数组实现队列</a></li>
+    <li><a href="#双端队列-double-ended-queue">双端队列 Double ended Queue</a></li>
+    <li><a href="#思考题">思考题</a></li>
+  </ul>
+</nav>
+    </nav>
+</aside>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+    <span>&copy; 2024 Taketaketakeru</span>
+    
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/526avijitgupta/gokarna">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>

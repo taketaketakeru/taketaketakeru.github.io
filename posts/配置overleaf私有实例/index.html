@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>配置Overleaf私有实例</title>
+    <meta name="description" content="Welcome to My Blog">
+    <meta name="keywords" content='blog, gokarna, hugo, 工具, Overleaf'>
+
+    <meta property="og:url" content="https://taketaketakeru.github.io/posts/%E9%85%8D%E7%BD%AEoverleaf%E7%A7%81%E6%9C%89%E5%AE%9E%E4%BE%8B/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="配置Overleaf私有实例">
+    <meta property="og:description" content="Welcome to My Blog">
+    <meta property="og:image" content="https://taketaketakeru.github.io/images/lorem-ipsum/quick-fox.png">
+    <meta property="og:image:secure_url" content="https://taketaketakeru.github.io/images/lorem-ipsum/quick-fox.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="配置Overleaf私有实例">
+    <meta name="twitter:description" content="Welcome to My Blog">
+    <meta property="twitter:domain" content="https://taketaketakeru.github.io/posts/%E9%85%8D%E7%BD%AEoverleaf%E7%A7%81%E6%9C%89%E5%AE%9E%E4%BE%8B/">
+    <meta property="twitter:url" content="https://taketaketakeru.github.io/posts/%E9%85%8D%E7%BD%AEoverleaf%E7%A7%81%E6%9C%89%E5%AE%9E%E4%BE%8B/">
+    <meta name="twitter:image" content="https://taketaketakeru.github.io/images/lorem-ipsum/quick-fox.png">
+
+    
+    <link rel="canonical" href="https://taketaketakeru.github.io/posts/%E9%85%8D%E7%BD%AEoverleaf%E7%A7%81%E6%9C%89%E5%AE%9E%E4%BE%8B/" />
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.315e3e4471e2465f34b6c92d59edceac6f6b3d3844df51bbaac4e5f7227b04e4.js" integrity="sha256-MV4&#43;RHHiRl80tsktWe3OrG9rPThE31G7qsTl9yJ7BOQ="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script type="text/javascript">
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://taketaketakeru.github.io/">
+                <img src='/images/avatar.webp' alt="avatar" />
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://taketaketakeru.github.io/">Takeru&#39;s Blog</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/"><span data-feather='home'></span> Home </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/posts/"><span data-feather='book'></span> Posts </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/tags/"><span data-feather='tag'></span> Tags </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/plans/"><span data-feather='code'></span> Plans </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/about/"><span data-feather='coffee'></span> About </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span id="dark-theme-toggle-screen-reader-target" class="sr-only"></span>
+                <a>
+                    <span id="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span id="hamburger-menu-toggle-screen-reader-target" class="sr-only">menu</span>
+                <a>
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/"><span data-feather='home'></span> Home </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/posts/"><span data-feather='book'></span> Posts </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/tags/"><span data-feather='tag'></span> Tags </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/plans/"><span data-feather='code'></span> Plans </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/about/"><span data-feather='coffee'></span> About </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span id="dark-theme-toggle-screen-reader-target" class="sr-only">theme</span>
+                    <a>
+                        <span id="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>配置Overleaf私有实例</h1>
+        <small role="doc-subtitle"></small>
+        <p class="post-date">四月 14, 2023
+        
+        </p>
+
+        <ul class="post-tags">
+        
+            <li class="post-tag"><a href="https://taketaketakeru.github.io/tags/%E5%B7%A5%E5%85%B7">工具</a></li>
+        
+            <li class="post-tag"><a href="https://taketaketakeru.github.io/tags/overleaf">Overleaf</a></li>
+        
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h2 id="docker">Docker</h2>
+<p>安装方法见<a href="https://www.docker.com/">docker官网</a></p>
+<h2 id="overleaf">Overleaf</h2>
+<p><em>主要参考了两篇文章，分别是<a href="https://developer.aliyun.com/article/919556?spm=a2c6h.14164896.0.0.6ee9179dfyNzKi">使用阿里云ECS服务器部署Overleaf实例-阿里云开发者社区</a>，以及<a href="https://zhuanlan.zhihu.com/p/481788258?utm_id=0">知乎文章</a></em></p>
+<h4 id="step-0-安装工具确认">Step 0 安装工具确认</h4>
+<p>首先，确认docker，docker-compose以及git正确安装，前两者主要用来运行overleaf-ce，后者通过拉取overleaf提供的快速安装脚本来进行基本安装。</p>
+<p><code>yum -y install git</code></p>
+<h4 id="step-1-拉取overleaf-toolkit">Step 1 拉取Overleaf-ToolKit</h4>
+<pre tabindex="0"><code>git clone https://github.com/overleaf/toolkit.git
+</code></pre><h4 id="step-2-配置overleaf">Step 2 配置Overleaf</h4>
+<p>使用<code>cd toolkit</code>进入下载的文件目录，再进入<strong>bin</strong>目录，使用<code>./init</code>来初始化<strong>config</strong>文件夹。然后回到上级目录，使用<code>vi config/overleaf.rc</code>来编辑配置文件，需要将<code>SHARELATEX_LISTEN_IP</code>值修改为<strong>0.0.0.0</strong>，下面的端口保持80或在端口冲突的情况下映射到其他端口。</p>
+<p>在这一步完成后，需要保证服务器防火墙允许指定的端口通过，并允许所有/指定的ip接入。</p>
+<p>当一切准备完毕，切换回<strong>bin</strong>目录下 ，输入<code>./up</code>初始化overleaf。这时docker会拉取三个镜像开始运行，当终端开始打印mongo日志时，按<code>ctrl + c</code>退出。</p>
+<p>继续在<strong>bin</strong>目录下执行<code>./start</code>，让overleaf开始运行。</p>
+<p>用浏览器打开<code>http://公网IP:映射的端口/launchpad</code>，进入管理员页面，注册管理员账户。此时overleaf可以正常运行</p>
+<h4 id="step-3-下载完整texlive包">Step 3 下载完整texlive包</h4>
+<p>以上安装的配套包并不完整，需要安装完整包。</p>
+<p>首先进入容器的bash:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>docker exec -it sharelatex bash
+</span></span><span style="display:flex;"><span>cd /usr/local/texlive
+</span></span></code></pre></div><p>然后执行以下命令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span># 下载并运行升级脚本
+</span></span><span style="display:flex;"><span>wget http://mirror.ctan.org/systems/texlive/tlnet/update-tlmgr-latest.sh
+</span></span><span style="display:flex;"><span>sh update-tlmgr-latest.sh -- --upgrade
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 更换texlive的下载源
+</span></span><span style="display:flex;"><span>tlmgr option repository https://mirrors.sustech.edu.cn/CTAN/systems/texlive/tlnet/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 升级tlmgr
+</span></span><span style="display:flex;"><span>tlmgr update --self --all
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 安装完整版texlive（时间比较长，不要让shell断开）
+</span></span><span style="display:flex;"><span>tlmgr install scheme-full
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 退出sharelatex的命令行界面，并重启sharelatex容器
+</span></span><span style="display:flex;"><span>exit
+</span></span><span style="display:flex;"><span>docker restart sharelatex
+</span></span></code></pre></div><p>安装完成。</p>
+
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+    <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="topFunction()" title="Go to top">
+        
+        <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+    </svg>
+    <script>
+        let backToTopButton = document.getElementById("btt-button");
+
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        }
+
+        function topFunction() {
+            smoothScrollToTop();
+        }
+
+        function smoothScrollToTop() {
+            const scrollToTop = () => {
+                const c = document.documentElement.scrollTop || document.body.scrollTop;
+                if (c > 0) {
+                    window.requestAnimationFrame(scrollToTop);
+                    window.scrollTo(0, c - c / 8);
+                }
+            };
+            scrollToTop();
+        }
+    </script>
+    
+    
+</div>
+
+<aside class="post-toc">
+    <nav id="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#docker">Docker</a></li>
+        <li><a href="#overleaf">Overleaf</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#step-0-安装工具确认">Step 0 安装工具确认</a></li>
+                <li><a href="#step-1-拉取overleaf-toolkit">Step 1 拉取Overleaf-ToolKit</a></li>
+                <li><a href="#step-2-配置overleaf">Step 2 配置Overleaf</a></li>
+                <li><a href="#step-3-下载完整texlive包">Step 3 下载完整texlive包</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </nav>
+</aside>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+    <span>&copy; 2024 Taketaketakeru</span>
+    
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/526avijitgupta/gokarna">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>

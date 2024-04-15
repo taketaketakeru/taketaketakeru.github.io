@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>02 数组和列表</title>
+    <meta name="description" content="介绍Python中的线性结构">
+    <meta name="keywords" content='blog, gokarna, hugo, 数据结构'>
+
+    <meta property="og:url" content="https://taketaketakeru.github.io/posts/02-%E6%95%B0%E7%BB%84%E5%92%8C%E5%88%97%E8%A1%A8/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="02 数组和列表">
+    <meta property="og:description" content="介绍Python中的线性结构">
+    <meta property="og:image" content="https://taketaketakeru.github.io/images/avatar.webp">
+    <meta property="og:image:secure_url" content="https://taketaketakeru.github.io/images/avatar.webp">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="02 数组和列表">
+    <meta name="twitter:description" content="介绍Python中的线性结构">
+    <meta property="twitter:domain" content="https://taketaketakeru.github.io/posts/02-%E6%95%B0%E7%BB%84%E5%92%8C%E5%88%97%E8%A1%A8/">
+    <meta property="twitter:url" content="https://taketaketakeru.github.io/posts/02-%E6%95%B0%E7%BB%84%E5%92%8C%E5%88%97%E8%A1%A8/">
+    <meta name="twitter:image" content="https://taketaketakeru.github.io/images/avatar.webp">
+
+    
+    <link rel="canonical" href="https://taketaketakeru.github.io/posts/02-%E6%95%B0%E7%BB%84%E5%92%8C%E5%88%97%E8%A1%A8/" />
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.315e3e4471e2465f34b6c92d59edceac6f6b3d3844df51bbaac4e5f7227b04e4.js" integrity="sha256-MV4&#43;RHHiRl80tsktWe3OrG9rPThE31G7qsTl9yJ7BOQ="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script type="text/javascript">
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://taketaketakeru.github.io/">
+                <img src='/images/avatar.webp' alt="avatar" />
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://taketaketakeru.github.io/">Takeru&#39;s Blog</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/"><span data-feather='home'></span> Home </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/posts/"><span data-feather='book'></span> Posts </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/tags/"><span data-feather='tag'></span> Tags </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/plans/"><span data-feather='code'></span> Plans </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/about/"><span data-feather='coffee'></span> About </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span id="dark-theme-toggle-screen-reader-target" class="sr-only"></span>
+                <a>
+                    <span id="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span id="hamburger-menu-toggle-screen-reader-target" class="sr-only">menu</span>
+                <a>
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/"><span data-feather='home'></span> Home </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/posts/"><span data-feather='book'></span> Posts </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/tags/"><span data-feather='tag'></span> Tags </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/plans/"><span data-feather='code'></span> Plans </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/about/"><span data-feather='coffee'></span> About </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span id="dark-theme-toggle-screen-reader-target" class="sr-only">theme</span>
+                    <a>
+                        <span id="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>02 数组和列表</h1>
+        <small role="doc-subtitle">介绍Python中的线性结构</small>
+        <p class="post-date">三月 7, 2022
+        
+        </p>
+
+        <ul class="post-tags">
+        
+            <li class="post-tag"><a href="https://taketaketakeru.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a></li>
+        
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h1 id="线性结构">线性结构</h1>
+<p>本节从最简单和常用的线性结构开始，并结合 Python 语言本身内置的数据结构和其底层实现方式来讲解。
+虽然本质上数据结构的思想是语言无关的，但是了解 Python 的实现方式有助于你避免一些坑。</p>
+<h1 id="数组-array">数组 array</h1>
+<p>数组是最常用到的一种线性结构，其实 python 内置了一个 array 模块，但是大部人甚至从来没用过它。
+Python 的 array 是内存连续、存储的都是同一数据类型的结构，而且只能存数值和字符。</p>
+<p>我建议你课下看下 array 的文档：https://docs.python.org/2/library/array.html</p>
+<p>你可能很少会使用到它(我推荐你用 numpy.array)，我将在视频里简单介绍下它的使用和工作方式，最常用的还是接下来要说的 list，
+本章最后我们会用 list 来实现一个固定长度、并且支持所有 Python 数据类型的数组 Array.</p>
+<h1 id="列表-list">列表 list</h1>
+<p>如果你学过 C++，list 其实和 C++ STL（标准模板库）中的 vector 很类似，它可能是你的 Python 学习中使用最频繁的数据结构之一。
+这里我们不再去自己实现 list，因为这是个 Python 提供的非常基础的数据类型，我会在视频中讲解它的工作方式和内存分配策略，
+避免使用过程中碰到一些坑。当然如果你有毅力或者兴趣的了解底层是如何实现的，可以看看 cpython 解释器的具体实现。</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>平均时间复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>list[index]</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>list.append</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>list.insert</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>list.pop(index), default last element</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>list.remove</td>
+<td>O(n)</td>
+</tr>
+</tbody>
+</table>
+<h1 id="用-list-实现-array-adt">用 list 实现 Array ADT</h1>
+<p>讲完了 list 让我们来实现一个定长的数组 Array ADT，在其他一些语言中，内置的数组结构就是定长的。
+这里我们会使用 list 作为 Array 的一个成员（代理）。具体请参考视频讲解和代码示例，后边我们会使用到这个 Array 类。</p>
+<h1 id="小问题">小问题</h1>
+<ul>
+<li>你知道线性结构的查找，删除，访问一个元素的平均时间复杂度吗？(后边我们会介绍这个概念，现在你可以简单地理解为一个操作需要的平均步骤)</li>
+<li>list 内存重新分配的时候为什么要有冗余？不会浪费空间吗？</li>
+<li>当你频繁的pop list 的第一个元素的时候，会发生什么？如果需要频繁在两头增添元素，你知道更高效的数据结构吗？后边我们会讲到</li>
+</ul>
+<h1 id="延伸阅读">延伸阅读</h1>
+<p><a href="https://www.laurentluce.com/posts/python-list-implementation/">Python list implementation</a></p>
+<p><a href="https://github.com/python/cpython/blob/master/Objects/listobject.c">https://github.com/python/cpython/blob/master/Objects/listobject.c</a></p>
+
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+    <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="topFunction()" title="Go to top">
+        
+        <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+    </svg>
+    <script>
+        let backToTopButton = document.getElementById("btt-button");
+
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        }
+
+        function topFunction() {
+            smoothScrollToTop();
+        }
+
+        function smoothScrollToTop() {
+            const scrollToTop = () => {
+                const c = document.documentElement.scrollTop || document.body.scrollTop;
+                if (c > 0) {
+                    window.requestAnimationFrame(scrollToTop);
+                    window.scrollTo(0, c - c / 8);
+                }
+            };
+            scrollToTop();
+        }
+    </script>
+    
+    
+</div>
+
+<aside class="post-toc">
+    <nav id="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#线性结构">线性结构</a></li>
+    <li><a href="#数组-array">数组 array</a></li>
+    <li><a href="#列表-list">列表 list</a></li>
+    <li><a href="#用-list-实现-array-adt">用 list 实现 Array ADT</a></li>
+    <li><a href="#小问题">小问题</a></li>
+    <li><a href="#延伸阅读">延伸阅读</a></li>
+  </ul>
+</nav>
+    </nav>
+</aside>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+    <span>&copy; 2024 Taketaketakeru</span>
+    
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/526avijitgupta/gokarna">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>

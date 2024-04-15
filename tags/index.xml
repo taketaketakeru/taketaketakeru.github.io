@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Takeru&#39;s Blog</title>
+    <link>https://taketaketakeru.github.io/tags/</link>
+    <description>Recent content in Tags on Takeru&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 19 Jan 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://taketaketakeru.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>学习方法</title>
+      <link>https://taketaketakeru.github.io/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</link>
+      <pubDate>Fri, 19 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://taketaketakeru.github.io/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>阅读笔记</title>
+      <link>https://taketaketakeru.github.io/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Fri, 19 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://taketaketakeru.github.io/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Overleaf</title>
+      <link>https://taketaketakeru.github.io/tags/overleaf/</link>
+      <pubDate>Fri, 14 Apr 2023 23:39:49 +0530</pubDate>
+      <guid>https://taketaketakeru.github.io/tags/overleaf/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>工具</title>
+      <link>https://taketaketakeru.github.io/tags/%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Fri, 14 Apr 2023 23:39:49 +0530</pubDate>
+      <guid>https://taketaketakeru.github.io/tags/%E5%B7%A5%E5%85%B7/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>数据结构</title>
+      <link>https://taketaketakeru.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+      <pubDate>Fri, 11 Mar 2022 21:29:01 +0800</pubDate>
+      <guid>https://taketaketakeru.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

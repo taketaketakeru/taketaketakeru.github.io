@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Takeru&#39;s Blog</title>
+    <link>https://taketaketakeru.github.io/posts/</link>
+    <description>Recent content in Posts on Takeru&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 19 Jan 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://taketaketakeru.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>06 算法分析</title>
+      <link>https://taketaketakeru.github.io/posts/06-%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/</link>
+      <pubDate>Fri, 11 Mar 2022 21:29:01 +0800</pubDate>
+      <guid>https://taketaketakeru.github.io/posts/06-%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/</guid>
+      <description>算法复杂度分析 前面我们说了很多次时间复杂度是 O(1), O(n) 啥的，并没有仔细讲解这个 O 符号究竟是什么。 你可以大概理解为操作的次数和数据个数的比例关系。比如 O(1) 就是有限次数操作，O(n) 就是操作正比于你的元素个数。 这一章我们用更严谨的方式来定义它。&#xA;大 O 表示法 我们从一个计算矩阵的例子来引入，这里我参考了 《Data Structures and Algorithms in Python》 中给的一个例子:&#xA;考虑计算一个 n * n 矩阵所有元素的和：&#xA;这里列举两种方式:&#xA;# version1 total_sum = 0 for i in range(n): row_sum[i] = 0 for j in range(n): row_sum[i] = row_sum[i] + matrix[i, j] total_sum = total_sum + matrix[i, j] # version2 total_sum = 0 for i in range(n): row_sum[i] = 0 for j in range(n): row_sum[i] = row_sum[i] + matrix[i, j] total_sum = total_sum + row_sum[i] # 注意这里和上边的不同 v1 版本的关键操作在 j 循环里，两步加法操作，由于嵌套在第一个循环里，操作步骤是 $ (2n) * n = 2n^2 $。</description>
+    </item>
+    <item>
+      <title>05 栈</title>
+      <link>https://taketaketakeru.github.io/posts/05-%E6%A0%88/</link>
+      <pubDate>Thu, 10 Mar 2022 21:29:01 +0800</pubDate>
+      <guid>https://taketaketakeru.github.io/posts/05-%E6%A0%88/</guid>
+      <description>栈 栈这个词实际上在计算机科学里使用很多，除了数据结构外，还有内存里的栈区 （和堆对应），熟悉 C 系语言的话应该不会陌生。 上一章我们讲到了先进先出 queue，其实用 python 的内置类型 collections.deque 或者我们自己实现的 LinkedList 来实现它都很简单。 本章我们讲讲 后进先出的栈。&#xA;生活中的数据结构：&#xA;栈。好比在桶里头放盘子，先放的盘子放在了底下，后来的盘子放在上边。你要拿的时候，也是先拿最上边的。 栈其实也很简单，因为基础操作就俩，一个 push 和一个 pop，咦，咋和队列一样的？ 确实方法名字一样，但是得到的结果可是不同的。&#xA;栈 ADT 上一章我介绍了我们怎样选取恰到的数据结构来实现新的 ADT？你能想到这里我们应该使用之前提到的哪个数据结构来实现吗？ 你的大脑可能开始高(gui)速(su)旋转了，上几章学过的 array, list, deque, LinkedList, CircularDoubleLinkedList, queue 等在大脑里呼啸而过，这个时候可能已经一脸愁容了，到底该选啥？&#xA;还用问嘛，当然是时间复杂度最小的啦，大部分情况下空间都是够用的。 其实你会发现栈比队列还简单，因为它只在顶上操作（想象装着盘子的桶），如果有一种数据结构能方便在尾部增减元素不就满足需求了吗。 这个时候如果你忘记了，可以翻翻前几章，看看哪个数据结构符合要求。&#xA;想一下，似乎 CircularDoubleLinkedList 循环双端队列是满足的，因为增删最后一个元素都是 O(1)。 不过看了下示例代码，似乎没有 pop() 方法，对，因为我已经把实现 deque 作为思考题了。😂 如果之前你没写出来也没关系，这里我们会再实现它。&#xA;视频里我们将借助 CircularDoubleLinkedList 实现 双端队列 Deque ，并且用 Deque 实现 Stack。&#xA;Stack over flow 什么鬼？ 嗯，stackoverflow 不是一个程序员问答网站吗？没错。 函数的临时变量是存储在栈区的，如果你不幸写了一个没有出口的递归函数，就会这个错。不信你试试：&#xA;def infinite_fib(n): return infinite_fib(n-1) + infinite_fib(n-2) infinite_fib(10) 一大段输出之后就会出现异常： RecursionError: maximum recursion depth exceeded。 后边会讲到递归，递归是初学者比较难理解的概念，在树的遍历等地方还会看到它。</description>
+    </item>
+    <item>
+      <title>04 队列</title>
+      <link>https://taketaketakeru.github.io/posts/04-%E9%98%9F%E5%88%97/</link>
+      <pubDate>Wed, 09 Mar 2022 21:29:01 +0800</pubDate>
+      <guid>https://taketaketakeru.github.io/posts/04-%E9%98%9F%E5%88%97/</guid>
+      <description>队列和栈 前面讲了线性和链式结构，如果你顺利掌握了，下边的队列和栈就小菜一碟了。因为我们会用前两章讲到的东西来实现队列和栈。 之所以放到一起讲是因为这两个东西很类似，队列是先进先出结构(FIFO, first in first out)， 栈是后进先出结构(LIFO, last in first out)。&#xA;生活中的数据结构：&#xA;队列。没错就是咱平常排队，第一个来的第一个走 本章我们详细讲讲常用的队列&#xA;队列 Queue 这里卖个关子，如果你熟悉了上两节讲的内容，这里你会选取哪个数据结构作为队列的底层存储？ 还记得第一章讲的如何实现 ADT 吗？我视频了说了三个注意事项：&#xA;1.如何选用恰当的数据结构作为存储？ 2.选取的数据结构能否满足 ADT 的功能需求 3.实现效率如何？ 我们先来看看 list 可以不？对照这个三个需求，看看能否满足：&#xA;1.我们选择了 list 2.看起来队列需要从头删除，向尾部增加元素，也就是 list.pop(0) 和 list.append(element) 3.嗯，貌似 list.pop(0) 会导致所有其后所有元素向前移动一个位置，O(n)复杂度。append 平均倒是O(1)，但是如果内存不够还要重新分配内存。 你看，使用了 list 的话频繁 pop(0) 是非常低效的。(当然list 实现还有另一种方式就是插入用 list.insert(0, item)，删除用list.pop())&#xA;脑子再转转， 我们第二章实现了 链表 LinkedList，看看能否满足要求：&#xA;1.这里选择 LinkedList 2.删除头元素 LinkedList.popleft()，追加 append(element)。都可以满足 3.哇欧，这两个操作都是 O(1) 的，完美。 好， 就用 LinkedList 了，我们开始实现，具体看视频。这次实现我们还将演示自定义异常和测试异常。&#xA;用数组实现队列 难道用数组就不能实现队列了吗？其实还是可以的。只不过数组是预先分配固定内存的，所以如果你知道了队列的最大长度，也是 可以用数组来实现的。&#xA;想象一下，队列就俩操作，进进出出，一进一出，pop 和 push 操作。 似乎只要两个下标 head, tail 就可以了。 当我们 push 的时候赋值并且前移 head，pop 的时候前移 tail 就可以了。你可以在纸上 模拟下试试。列队的长度就是 head-pop，这个长度必须不能大于初始化的最大程度。</description>
+    </item>
+    <item>
+      <title>03 链表</title>
+      <link>https://taketaketakeru.github.io/posts/03-%E9%93%BE%E8%A1%A8/</link>
+      <pubDate>Tue, 08 Mar 2022 21:29:01 +0800</pubDate>
+      <guid>https://taketaketakeru.github.io/posts/03-%E9%93%BE%E8%A1%A8/</guid>
+      <description>链式结构 上一节讲到了支持随机访问的线性结构，这次开始讲链式结构。&#xA;上一节我们分析了 list 的各种操作是如何实现的，如果你还有印象的话，list 在头部进行插入是个相当耗时的操作（需要把后边的元素一个一个挪个位置）。假如你需要频繁在数组两头增删，list 就不太合适。 今天我们介绍的链式结构将摆脱这个缺陷，当然了链式结构本身也有缺陷，比如你不能像数组一样随机根据下标访问，你想查找一个元素只能老老实实从头遍历。 所以嘛，学习和了解数据结构的原理和实现你才能准确地选择到底什么时候该用什么数据结构，而不是瞎选导致代码性能很差。&#xA;单链表 和线性结构不同，链式结构内存不连续的，而是一个个串起来的，这个时候就需要每个链接表的节点保存一个指向下一个节点的指针。 这里可不要混淆了列表和链表（它们的中文发音类似，但是列表 list 底层其实还是线性结构，链表才是真的通过指针关联的链式结构）。 看到指针你也不用怕，这里我们用的 python，你只需要一个简单赋值操作就能实现，不用担心 c 语言里复杂的指针。&#xA;先来定义一个链接表的节点，刚才说到有一个指针保存下一个节点的位置，我们叫它 next， 当然还需要一个 value 属性保存值&#xA;class Node(object): def __init__(self, value, next=None): self.value = value self.next = next 然后就是我们的单链表 LinkedList ADT:&#xA;class LinkedList(object): &amp;#34;&amp;#34;&amp;#34; 链接表 ADT [root] -&amp;gt; [node0] -&amp;gt; [node1] -&amp;gt; [node2] &amp;#34;&amp;#34;&amp;#34; 实现我们会在视频中用画图来模拟并且手动代码实现，代码里我们会标识每个步骤的时间复杂度。这里请高度集中精力， 虽然链表的思想很简单，但是想要正确写对链表的操作代码可不容易，稍不留神就可能丢失一些步骤。 这里我们还是会用简单的单测来验证代码是否按照预期工作。&#xA;来看下时间复杂度：&#xA;链表操作 平均时间复杂度 linked_list.append(value) O(1) linked_list.appendleft(value) O(1) linked_list.find(value) O(n) linked_list.remove(value) O(n) 双链表 上边我们亲自实现了一个单链表，但是能看到很明显的问题，单链表虽然 append 是 O(1)，但是它的 find 和 remove 都是 O(n)的， 因为删除你也需要先查找，而单链表查找只有一个方式就是从头找到尾，中间找到才退出。 这里我之前提到过如果要实现一个 lru 缓存（访问时间最久的踢出），我们需要在一个链表里能高效的删除元素， 并把它追加到访问表的最后一个位置，这个时候单链表就满足不了了， 因为缓存在 dict 里查找的时间是 O(1)，你更新访问顺序就 O(n)了，缓存就没了优势。</description>
+    </item>
+    <item>
+      <title>02 数组和列表</title>
+      <link>https://taketaketakeru.github.io/posts/02-%E6%95%B0%E7%BB%84%E5%92%8C%E5%88%97%E8%A1%A8/</link>
+      <pubDate>Mon, 07 Mar 2022 21:29:01 +0800</pubDate>
+      <guid>https://taketaketakeru.github.io/posts/02-%E6%95%B0%E7%BB%84%E5%92%8C%E5%88%97%E8%A1%A8/</guid>
+      <description>线性结构 本节从最简单和常用的线性结构开始，并结合 Python 语言本身内置的数据结构和其底层实现方式来讲解。 虽然本质上数据结构的思想是语言无关的，但是了解 Python 的实现方式有助于你避免一些坑。&#xA;数组 array 数组是最常用到的一种线性结构，其实 python 内置了一个 array 模块，但是大部人甚至从来没用过它。 Python 的 array 是内存连续、存储的都是同一数据类型的结构，而且只能存数值和字符。&#xA;我建议你课下看下 array 的文档：https://docs.python.org/2/library/array.html&#xA;你可能很少会使用到它(我推荐你用 numpy.array)，我将在视频里简单介绍下它的使用和工作方式，最常用的还是接下来要说的 list， 本章最后我们会用 list 来实现一个固定长度、并且支持所有 Python 数据类型的数组 Array.&#xA;列表 list 如果你学过 C++，list 其实和 C++ STL（标准模板库）中的 vector 很类似，它可能是你的 Python 学习中使用最频繁的数据结构之一。 这里我们不再去自己实现 list，因为这是个 Python 提供的非常基础的数据类型，我会在视频中讲解它的工作方式和内存分配策略， 避免使用过程中碰到一些坑。当然如果你有毅力或者兴趣的了解底层是如何实现的，可以看看 cpython 解释器的具体实现。&#xA;操作 平均时间复杂度 list[index] O(1) list.append O(1) list.insert O(n) list.pop(index), default last element O(1) list.remove O(n) 用 list 实现 Array ADT 讲完了 list 让我们来实现一个定长的数组 Array ADT，在其他一些语言中，内置的数组结构就是定长的。 这里我们会使用 list 作为 Array 的一个成员（代理）。具体请参考视频讲解和代码示例，后边我们会使用到这个 Array 类。</description>
+    </item>
+    <item>
+      <title>01 抽象数据类型和面向对象编程</title>
+      <link>https://taketaketakeru.github.io/posts/01-%E6%8A%BD%E8%B1%A1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/</link>
+      <pubDate>Sun, 06 Mar 2022 21:29:01 +0800</pubDate>
+      <guid>https://taketaketakeru.github.io/posts/01-%E6%8A%BD%E8%B1%A1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/</guid>
+      <description>Python 一切皆对象 举个例子，在 python 中我们经常使用的 list&#xA;l = list() # 实例化一个 list 对象 l l.append(1) # 调用 l 的 append 方法 l.append(2) l.remove(1) print(len(l)) # 调用对象的 `__len__` 方法 在后面实现新的数据类型时，我们将使用 python 的 class 实现，它包含属性和方法。 属性一般是使用某种特定的数据类型，而方法一般是对属性的操作。 这里你只需了解这么多就行了， 我们不会使用继承等特性。&#xA;什么是抽象数据类型 ADT 实际上 python 内置的 list 就可以看成一种抽象数据类型。&#xA;ADT: Abstract Data Type，抽象数据类型，我们在组合已有的数据结构来实现一种新的数据类型， ADT 定义了类型的数据和操作。&#xA;我们以抽象一个背包(Bag) 数据类型来说明，背包是一种容器类型，我们可以给它添加东西，也可以移除东西，并且我们想知道背包里 有多少东西。于是我们可以定义一个新的数据类型叫做 Bag.&#xA;class Bag: &amp;#34;&amp;#34;&amp;#34; 背包类型 &amp;#34;&amp;#34;&amp;#34; pass 实现一个 Bag ADT 视频中我们将使用 python 的 class 来实现一个新的容器类型叫做 Bag。&#xA;实现 ADT 我们应该注意什么？ 如何选用恰当的数据结构作为存储？ 选取的数据结构能否满足 ADT 的功能需求 实现效率如何？ 小问题： 你了解 python 的魔术方法吗？ 比如 __len__ ，调用 len(l) 的时候发生了什么？ 你了解单测吗？我们以后将使用 pytest 运行单元测试，保证我们实现的数据结构和算法是正确的。你可以网上搜索下它的简单用法 延伸阅读： 数据结构与算法&amp;ndash;ADT</description>
+    </item>
+    <item>
+      <title>从源码中学习</title>
+      <link>https://taketaketakeru.github.io/posts/%E5%A6%82%E4%BD%95%E4%BB%8E%E6%BA%90%E7%A0%81%E4%B8%AD%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Fri, 19 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://taketaketakeru.github.io/posts/%E5%A6%82%E4%BD%95%E4%BB%8E%E6%BA%90%E7%A0%81%E4%B8%AD%E5%AD%A6%E4%B9%A0/</guid>
+      <description>唐纳德·克努特甚至引入了文学编程(literateprogramming) 编程范式。 编程与写作有相同的理念：表达我们的想法 。 还记得你在学校是怎么学习写作的吗？我们的写作能力来源于从小学开始直到现在的大量的文本阅读。 多年以来，我们阅读了不同难度的伟大作家的作品，并练习了多种写作技巧。&#xA;和读书一样，有意地阅读代码可以帮助程序员加速成长，尤其是对中级(intermediate)程序员而言。&#xA;如果目前你不能理解某些特定的代码片段，这意味着你有个知识缺口(knowledge gap)。 把代码放到一边去，试着读一些相关的书、论文或其他文档，当你更有信心时再回来接着读代码。 我们总能在一个模式中取得进展：读（代码、书、论文），写，更多的读，更多的写。&#xA;如何读源码 《How to read a book》 是一本指导人进行明智地阅读的书。作为初学者，我们值得投入时间和精力去思考我们应该如何阅读代码。 阅读代码不是件容易的事。 光是阅读源码是不够的，你要试着去理解他人的设计和想法。&#xA;预先准备 为了更有效率地阅读代码，你需要提前在手边准备这些东西：&#xA;一个你可以熟练使用的编辑器。你需要拥有快速搜索关键字或变量名的能力。 有时你需要查找函数的引用和定义。和你的编辑器相处融洽些。 为了更加有效率，试着学习仅使用键盘操作编辑器。 这会使你专注于代码而不受打扰（译：指额外思考编辑器操作）。 掌握基本的Git或其他版本控制工具的技能，这样你就能比较代码在版本间的差异。 与源码有关的文档。文档可以为你的阅读提供参考，尤其是设计文档、编码规范等文档。 具有一定的编程语言与设计模式的知识和经验。这对（阅读）大项目是强制性的。 如果你很了解一门编程语言，你也会了解关于源码组织与编程范式的最佳实践。 当然，这需要时间来积累。要有耐心。 流程与技巧 阅读过程不是线性的。你不会就那么一个接一个地读源文件。 相反，大多数时候我们会从顶到底地阅读代码。 下面是一些更有效率阅读代码的小技巧：&#xA;结合上下文阅读代码 当你阅读代码时，请持续提出问题。 例如，如果一个应用有缓存策略，一个好问题就是：如果键无效了会怎样？缓存中的值如何更新？ 带着这些问题阅读代码，就是结合上下文。或者说因为你有了一个目标，你会变得享受阅读的过程。 你甚至可以自己做一些假设，然后在代码中寻找验证。&#xA;你有点像侦探：你想发现代码的真相，代码的逻辑，代码是如何像故事一般上下流动的。&#xA;把实例跑起来并与之交互 源码就像乐高积木，只是已经组装好了。 如果你想了解它们是怎么组装在一起的，你需要和它交互，有时甚至要把它拆开。 阅读同一模块的老版本同样有帮助。从Git中阅读版本差异，试着弄清楚特定的特性是如何实现的 （修改日志在这个场景很有用）。 举个例子，我发现Lua的第一个版本相当简单，这可以帮助我了解作者最初的设计理念。&#xA;Debug是另一种与代码交互的方式。试着在代码中加一些断点（或打印一些变量值）， 然后弄明白打印到控制台中的所有输出。&#xA;如果你对代码了解比较透彻了，试着对代码做一些修改，重新build并把它跑起来。 最简单的方式是试着调整配置项，去看不同配置的运行结果。 之后你可以试着添加一些细微的特性。 如果这些特性对其他人也有用，你应该把代码贡献到上游。&#xA;了解数据结构间的关系 “糟糕的程序员担心代码，优秀的程序员担心数据结构和它们的关系。” -Linus Torvalds&#xA;数据结构是一个程序中最重要的元素。用笔或者你喜欢的其他工具画出数据结构间的关系。 这个图就是源码的映射。你会在阅读过程中时常参考这个图。一些工具比如scitools 可以用来生成UML类图。 （译：这个方法用在写代码中能节约翻Model声明文件的时间，推荐用纸笔，不占屏幕）&#xA;了解模块间的依赖关系与边界 大项目中会包含许多模块，一个模块经常只拥有单一职责。 这有助于我们减少代码复杂度，在适当的层级上做抽象。 模块的接口是抽象的边界，我们可以一个接一个地阅读模块。 如果你在阅读一个使用Make构建的C/C++项目，Makefile是了解模块间如何组织的好切入点。&#xA;边界本身也很有用。优秀的代码组织得很好，变量名与函数名的命名风格体现着可读性。 你不需要阅读全部源文件，你可以忽略不重要的或你熟悉的部分。 如果你确定一个模块是仅仅是为了被解析而设计的(just designed for parsing)， 那么你已经大致了解了它的功能；那么你就可以跳过不读这个模块。 当然，这将大大节约时间。</description>
+    </item>
+    <item>
+      <title>个人博客搭建总结报告</title>
+      <link>https://taketaketakeru.github.io/posts/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%80%BB%E7%BB%93%E6%8A%A5%E5%91%8A/</link>
+      <pubDate>Fri, 19 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://taketaketakeru.github.io/posts/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%80%BB%E7%BB%93%E6%8A%A5%E5%91%8A/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>配置Overleaf私有实例</title>
+      <link>https://taketaketakeru.github.io/posts/%E9%85%8D%E7%BD%AEoverleaf%E7%A7%81%E6%9C%89%E5%AE%9E%E4%BE%8B/</link>
+      <pubDate>Fri, 14 Apr 2023 23:39:49 +0530</pubDate>
+      <guid>https://taketaketakeru.github.io/posts/%E9%85%8D%E7%BD%AEoverleaf%E7%A7%81%E6%9C%89%E5%AE%9E%E4%BE%8B/</guid>
+      <description>Docker 安装方法见docker官网&#xA;Overleaf 主要参考了两篇文章，分别是使用阿里云ECS服务器部署Overleaf实例-阿里云开发者社区，以及知乎文章&#xA;Step 0 安装工具确认 首先，确认docker，docker-compose以及git正确安装，前两者主要用来运行overleaf-ce，后者通过拉取overleaf提供的快速安装脚本来进行基本安装。&#xA;yum -y install git&#xA;Step 1 拉取Overleaf-ToolKit git clone https://github.com/overleaf/toolkit.git Step 2 配置Overleaf 使用cd toolkit进入下载的文件目录，再进入bin目录，使用./init来初始化config文件夹。然后回到上级目录，使用vi config/overleaf.rc来编辑配置文件，需要将SHARELATEX_LISTEN_IP值修改为0.0.0.0，下面的端口保持80或在端口冲突的情况下映射到其他端口。&#xA;在这一步完成后，需要保证服务器防火墙允许指定的端口通过，并允许所有/指定的ip接入。&#xA;当一切准备完毕，切换回bin目录下 ，输入./up初始化overleaf。这时docker会拉取三个镜像开始运行，当终端开始打印mongo日志时，按ctrl + c退出。&#xA;继续在bin目录下执行./start，让overleaf开始运行。&#xA;用浏览器打开http://公网IP:映射的端口/launchpad，进入管理员页面，注册管理员账户。此时overleaf可以正常运行&#xA;Step 3 下载完整texlive包 以上安装的配套包并不完整，需要安装完整包。&#xA;首先进入容器的bash:&#xA;docker exec -it sharelatex bash cd /usr/local/texlive 然后执行以下命令：&#xA;# 下载并运行升级脚本 wget http://mirror.ctan.org/systems/texlive/tlnet/update-tlmgr-latest.sh sh update-tlmgr-latest.sh -- --upgrade # 更换texlive的下载源 tlmgr option repository https://mirrors.sustech.edu.cn/CTAN/systems/texlive/tlnet/ # 升级tlmgr tlmgr update --self --all # 安装完整版texlive（时间比较长，不要让shell断开） tlmgr install scheme-full # 退出sharelatex的命令行界面，并重启sharelatex容器 exit docker restart sharelatex 安装完成。</description>
+    </item>
+  </channel>
+</rss>

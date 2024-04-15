@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>工具 on Takeru&#39;s Blog</title>
+    <link>https://taketaketakeru.github.io/tags/%E5%B7%A5%E5%85%B7/</link>
+    <description>Recent content in 工具 on Takeru&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 14 Apr 2023 23:39:49 +0530</lastBuildDate>
+    <atom:link href="https://taketaketakeru.github.io/tags/%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>配置Overleaf私有实例</title>
+      <link>https://taketaketakeru.github.io/posts/%E9%85%8D%E7%BD%AEoverleaf%E7%A7%81%E6%9C%89%E5%AE%9E%E4%BE%8B/</link>
+      <pubDate>Fri, 14 Apr 2023 23:39:49 +0530</pubDate>
+      <guid>https://taketaketakeru.github.io/posts/%E9%85%8D%E7%BD%AEoverleaf%E7%A7%81%E6%9C%89%E5%AE%9E%E4%BE%8B/</guid>
+      <description>Docker 安装方法见docker官网&#xA;Overleaf 主要参考了两篇文章，分别是使用阿里云ECS服务器部署Overleaf实例-阿里云开发者社区，以及知乎文章&#xA;Step 0 安装工具确认 首先，确认docker，docker-compose以及git正确安装，前两者主要用来运行overleaf-ce，后者通过拉取overleaf提供的快速安装脚本来进行基本安装。&#xA;yum -y install git&#xA;Step 1 拉取Overleaf-ToolKit git clone https://github.com/overleaf/toolkit.git Step 2 配置Overleaf 使用cd toolkit进入下载的文件目录，再进入bin目录，使用./init来初始化config文件夹。然后回到上级目录，使用vi config/overleaf.rc来编辑配置文件，需要将SHARELATEX_LISTEN_IP值修改为0.0.0.0，下面的端口保持80或在端口冲突的情况下映射到其他端口。&#xA;在这一步完成后，需要保证服务器防火墙允许指定的端口通过，并允许所有/指定的ip接入。&#xA;当一切准备完毕，切换回bin目录下 ，输入./up初始化overleaf。这时docker会拉取三个镜像开始运行，当终端开始打印mongo日志时，按ctrl + c退出。&#xA;继续在bin目录下执行./start，让overleaf开始运行。&#xA;用浏览器打开http://公网IP:映射的端口/launchpad，进入管理员页面，注册管理员账户。此时overleaf可以正常运行&#xA;Step 3 下载完整texlive包 以上安装的配套包并不完整，需要安装完整包。&#xA;首先进入容器的bash:&#xA;docker exec -it sharelatex bash cd /usr/local/texlive 然后执行以下命令：&#xA;# 下载并运行升级脚本 wget http://mirror.ctan.org/systems/texlive/tlnet/update-tlmgr-latest.sh sh update-tlmgr-latest.sh -- --upgrade # 更换texlive的下载源 tlmgr option repository https://mirrors.sustech.edu.cn/CTAN/systems/texlive/tlnet/ # 升级tlmgr tlmgr update --self --all # 安装完整版texlive（时间比较长，不要让shell断开） tlmgr install scheme-full # 退出sharelatex的命令行界面，并重启sharelatex容器 exit docker restart sharelatex 安装完成。</description>
+    </item>
+  </channel>
+</rss>

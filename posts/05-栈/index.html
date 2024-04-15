@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>05 栈</title>
+    <meta name="description" content="介绍Python中的线性结构">
+    <meta name="keywords" content='blog, gokarna, hugo, 数据结构'>
+
+    <meta property="og:url" content="https://taketaketakeru.github.io/posts/05-%E6%A0%88/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="05 栈">
+    <meta property="og:description" content="介绍Python中的线性结构">
+    <meta property="og:image" content="https://taketaketakeru.github.io/images/avatar.webp">
+    <meta property="og:image:secure_url" content="https://taketaketakeru.github.io/images/avatar.webp">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="05 栈">
+    <meta name="twitter:description" content="介绍Python中的线性结构">
+    <meta property="twitter:domain" content="https://taketaketakeru.github.io/posts/05-%E6%A0%88/">
+    <meta property="twitter:url" content="https://taketaketakeru.github.io/posts/05-%E6%A0%88/">
+    <meta name="twitter:image" content="https://taketaketakeru.github.io/images/avatar.webp">
+
+    
+    <link rel="canonical" href="https://taketaketakeru.github.io/posts/05-%E6%A0%88/" />
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.315e3e4471e2465f34b6c92d59edceac6f6b3d3844df51bbaac4e5f7227b04e4.js" integrity="sha256-MV4&#43;RHHiRl80tsktWe3OrG9rPThE31G7qsTl9yJ7BOQ="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script type="text/javascript">
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://taketaketakeru.github.io/">
+                <img src='/images/avatar.webp' alt="avatar" />
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://taketaketakeru.github.io/">Takeru&#39;s Blog</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/"><span data-feather='home'></span> Home </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/posts/"><span data-feather='book'></span> Posts </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/tags/"><span data-feather='tag'></span> Tags </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/plans/"><span data-feather='code'></span> Plans </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/about/"><span data-feather='coffee'></span> About </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span id="dark-theme-toggle-screen-reader-target" class="sr-only"></span>
+                <a>
+                    <span id="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span id="hamburger-menu-toggle-screen-reader-target" class="sr-only">menu</span>
+                <a>
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/"><span data-feather='home'></span> Home </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/posts/"><span data-feather='book'></span> Posts </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/tags/"><span data-feather='tag'></span> Tags </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/plans/"><span data-feather='code'></span> Plans </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/about/"><span data-feather='coffee'></span> About </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span id="dark-theme-toggle-screen-reader-target" class="sr-only">theme</span>
+                    <a>
+                        <span id="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>05 栈</h1>
+        <small role="doc-subtitle">介绍Python中的线性结构</small>
+        <p class="post-date">三月 10, 2022
+        
+        </p>
+
+        <ul class="post-tags">
+        
+            <li class="post-tag"><a href="https://taketaketakeru.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a></li>
+        
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h1 id="栈">栈</h1>
+<p>栈这个词实际上在计算机科学里使用很多，除了数据结构外，还有内存里的栈区 （和堆对应），熟悉 C 系语言的话应该不会陌生。
+上一章我们讲到了先进先出 queue，其实用 python 的内置类型 collections.deque 或者我们自己实现的 LinkedList 来实现它都很简单。
+本章我们讲讲 后进先出的栈。</p>
+<p>生活中的数据结构：</p>
+<ul>
+<li>栈。好比在桶里头放盘子，先放的盘子放在了底下，后来的盘子放在上边。你要拿的时候，也是先拿最上边的。</li>
+</ul>
+<p>栈其实也很简单，因为基础操作就俩，一个 push 和一个 pop，咦，咋和队列一样的？
+确实方法名字一样，但是得到的结果可是不同的。</p>
+<h1 id="栈-adt">栈 ADT</h1>
+<p>上一章我介绍了我们怎样选取恰到的数据结构来实现新的 ADT？你能想到这里我们应该使用之前提到的哪个数据结构来实现吗？
+你的大脑可能开始高(gui)速(su)旋转了，上几章学过的 array, list, deque, LinkedList, CircularDoubleLinkedList, queue
+等在大脑里呼啸而过，这个时候可能已经一脸愁容了，到底该选啥？</p>
+<p>还用问嘛，当然是时间复杂度最小的啦，大部分情况下空间都是够用的。
+其实你会发现栈比队列还简单，因为它只在顶上操作（想象装着盘子的桶），如果有一种数据结构能方便在尾部增减元素不就满足需求了吗。
+这个时候如果你忘记了，可以翻翻前几章，看看哪个数据结构符合要求。</p>
+<p>想一下，似乎 CircularDoubleLinkedList 循环双端队列是满足的，因为增删最后一个元素都是 O(1)。
+不过看了下示例代码，似乎没有 pop() 方法，对，因为我已经把实现 deque 作为思考题了。😂
+如果之前你没写出来也没关系，这里我们会再实现它。</p>
+<p>视频里我们将借助 CircularDoubleLinkedList 实现 双端队列 Deque ，并且用 Deque 实现 Stack。</p>
+<h1 id="stack-over-flow-什么鬼">Stack over flow 什么鬼？</h1>
+<p>嗯，stackoverflow 不是一个程序员问答网站吗？没错。
+函数的临时变量是存储在栈区的，如果你不幸写了一个没有出口的递归函数，就会这个错。不信你试试：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">infinite_fib</span>(n):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> infinite_fib(n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> infinite_fib(n<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>infinite_fib(<span style="color:#ae81ff">10</span>)
+</span></span></code></pre></div><p>一大段输出之后就会出现异常： RecursionError: maximum recursion depth exceeded。
+后边会讲到递归，递归是初学者比较难理解的概念，在树的遍历等地方还会看到它。</p>
+<h1 id="数据结构头脑风暴法">数据结构头脑风暴法</h1>
+<p>当我们不知道使用什么数据结构来解决问题的时候，《程序员面试金典》这本书的第六章提到了一种方式叫做『数据结构头脑风暴法』。
+这种笨方法就是快速过一遍数据结构的列表，然后逐一尝试各种数据结构看看哪个最适合。</p>
+<p>在你实现一个更高级的数据结构的时候，如果脑子没有思路，不妨尝试下这个方法，迅速过一遍你所知道的数据结构，看看哪种最适合。(从每个操作的时间复杂度和空间复杂度分析寻找最优解)</p>
+<h1 id="思考题">思考题</h1>
+<ul>
+<li>上一章我们用数组实现了队列，其实也能用数组来实现栈，你能自己用数组来实现一个栈的 ADT 吗？</li>
+<li>实际上借助 python 内置的 list/collections.deque 结构就很容易实现一个栈，请你尝试实现，本章我们全部使用自己编写的数据结构而没用到 python 内置的数据结构。</li>
+<li>这里我们自己实现了 Deque，你能用 python 内置的 collections.deque 实现栈吗？有轮子能直接用的话看起来就简单多了，这里我们为了学习数据结构的实现就避免了直接使用内置结构</li>
+<li>哪些经典算法里使用到了栈呢？</li>
+</ul>
+<h1 id="leetcode-练习">Leetcode 练习</h1>
+<p><a href="https://leetcode.com/problems/implement-queue-using-stacks/">https://leetcode.com/problems/implement-queue-using-stacks/</a></p>
+
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+    <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="topFunction()" title="Go to top">
+        
+        <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+    </svg>
+    <script>
+        let backToTopButton = document.getElementById("btt-button");
+
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        }
+
+        function topFunction() {
+            smoothScrollToTop();
+        }
+
+        function smoothScrollToTop() {
+            const scrollToTop = () => {
+                const c = document.documentElement.scrollTop || document.body.scrollTop;
+                if (c > 0) {
+                    window.requestAnimationFrame(scrollToTop);
+                    window.scrollTo(0, c - c / 8);
+                }
+            };
+            scrollToTop();
+        }
+    </script>
+    
+    
+</div>
+
+<aside class="post-toc">
+    <nav id="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#栈">栈</a></li>
+    <li><a href="#栈-adt">栈 ADT</a></li>
+    <li><a href="#stack-over-flow-什么鬼">Stack over flow 什么鬼？</a></li>
+    <li><a href="#数据结构头脑风暴法">数据结构头脑风暴法</a></li>
+    <li><a href="#思考题">思考题</a></li>
+    <li><a href="#leetcode-练习">Leetcode 练习</a></li>
+  </ul>
+</nav>
+    </nav>
+</aside>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+    <span>&copy; 2024 Taketaketakeru</span>
+    
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/526avijitgupta/gokarna">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>

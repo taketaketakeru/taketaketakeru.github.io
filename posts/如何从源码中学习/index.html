@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>从源码中学习</title>
+    <meta name="description" content="如何通过阅读源码进行学习">
+    <meta name="keywords" content='blog, gokarna, hugo, 阅读笔记, 学习方法'>
+
+    <meta property="og:url" content="https://taketaketakeru.github.io/posts/%E5%A6%82%E4%BD%95%E4%BB%8E%E6%BA%90%E7%A0%81%E4%B8%AD%E5%AD%A6%E4%B9%A0/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="从源码中学习">
+    <meta property="og:description" content="如何通过阅读源码进行学习">
+    <meta property="og:image" content="https://taketaketakeru.github.io/images/avatar.webp">
+    <meta property="og:image:secure_url" content="https://taketaketakeru.github.io/images/avatar.webp">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="从源码中学习">
+    <meta name="twitter:description" content="如何通过阅读源码进行学习">
+    <meta property="twitter:domain" content="https://taketaketakeru.github.io/posts/%E5%A6%82%E4%BD%95%E4%BB%8E%E6%BA%90%E7%A0%81%E4%B8%AD%E5%AD%A6%E4%B9%A0/">
+    <meta property="twitter:url" content="https://taketaketakeru.github.io/posts/%E5%A6%82%E4%BD%95%E4%BB%8E%E6%BA%90%E7%A0%81%E4%B8%AD%E5%AD%A6%E4%B9%A0/">
+    <meta name="twitter:image" content="https://taketaketakeru.github.io/images/avatar.webp">
+
+    
+    <link rel="canonical" href="https://taketaketakeru.github.io/posts/%E5%A6%82%E4%BD%95%E4%BB%8E%E6%BA%90%E7%A0%81%E4%B8%AD%E5%AD%A6%E4%B9%A0/" />
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.315e3e4471e2465f34b6c92d59edceac6f6b3d3844df51bbaac4e5f7227b04e4.js" integrity="sha256-MV4&#43;RHHiRl80tsktWe3OrG9rPThE31G7qsTl9yJ7BOQ="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script type="text/javascript">
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://taketaketakeru.github.io/">
+                <img src='/images/avatar.webp' alt="avatar" />
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://taketaketakeru.github.io/">Takeru&#39;s Blog</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/"><span data-feather='home'></span> Home </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/posts/"><span data-feather='book'></span> Posts </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/tags/"><span data-feather='tag'></span> Tags </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/plans/"><span data-feather='code'></span> Plans </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/about/"><span data-feather='coffee'></span> About </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span id="dark-theme-toggle-screen-reader-target" class="sr-only"></span>
+                <a>
+                    <span id="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span id="hamburger-menu-toggle-screen-reader-target" class="sr-only">menu</span>
+                <a>
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/"><span data-feather='home'></span> Home </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/posts/"><span data-feather='book'></span> Posts </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/tags/"><span data-feather='tag'></span> Tags </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/plans/"><span data-feather='code'></span> Plans </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/about/"><span data-feather='coffee'></span> About </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span id="dark-theme-toggle-screen-reader-target" class="sr-only">theme</span>
+                    <a>
+                        <span id="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>从源码中学习</h1>
+        <small role="doc-subtitle">如何通过阅读源码进行学习</small>
+        <p class="post-date">一月 19, 2024
+        
+        </p>
+
+        <ul class="post-tags">
+        
+            <li class="post-tag"><a href="https://taketaketakeru.github.io/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0">阅读笔记</a></li>
+        
+            <li class="post-tag"><a href="https://taketaketakeru.github.io/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95">学习方法</a></li>
+        
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <p>唐纳德·克努特甚至引入了<a href="https://en.wikipedia.org/wiki/Literate_programming">文学编程(literateprogramming)</a> 编程范式。 编程与写作有相同的理念：<a href="https://www.coderscat.com/how-to-learn-all-pl">表达我们的想法</a> 。 还记得你在学校是怎么学习写作的吗？我们的写作能力来源于从小学开始直到现在的大量的文本阅读。 多年以来，我们阅读了不同难度的伟大作家的作品，并练习了多种写作技巧。</p>
+<p><strong>和读书一样，有意地阅读代码可以帮助程序员加速成长，尤其是对中级(intermediate)程序员而言。</strong></p>
+<p>如果目前你不能理解某些特定的代码片段，这意味着你有个知识缺口(<strong>knowl</strong>edge <strong>g</strong>ap)。 把代码放到一边去，试着读一些相关的书、论文或其他文档，当你更有信心时再回来接着读代码。 我们总能在一个模式中取得进展：读（代码、书、论文），写，更多的读，更多的写。</p>
+<h2 id="如何读源码">如何读源码</h2>
+<p>《How to read a book》 是一本指导人进行明智地阅读的书。作为初学者，我们值得投入时间和精力去思考我们应该如何阅读代码。 <strong>阅读代码不是件容易的事。</strong> 光是阅读源码是不够的，你要试着去理解他人的设计和想法。</p>
+<h3 id="预先准备">预先准备</h3>
+<p>为了更有效率地阅读代码，你需要提前在手边准备这些东西：</p>
+<ul>
+<li>一个你可以熟练使用的编辑器。你需要拥有快速搜索关键字或变量名的能力。 有时你需要查找函数的引用和定义。和你的编辑器相处融洽些。 为了更加有效率，试着学习仅使用键盘操作编辑器。 这会使你专注于代码而不受打扰（译：指额外思考编辑器操作）。</li>
+<li>掌握基本的<strong>G</strong>it或其他版本控制工具的技能，这样你就能比较代码在版本间的差异。</li>
+<li>与源码有关的文档。文档可以为你的阅读提供参考，尤其是设计文档、编码规范等文档。</li>
+<li>具有一定的编程语言与设计模式的知识和经验。这对（阅读）大项目是强制性的。 如果你很了解一门编程语言，你也会了解关于源码组织与编程范式的最佳实践。 当然，这需要时间来积累。要有耐心。</li>
+</ul>
+<h3 id="流程与技巧">流程与技巧</h3>
+<p>阅读过程不是线性的。你不会就那么一个接一个地读源文件。 相反，大多数时候我们会从顶到底地阅读代码。 下面是一些更有效率阅读代码的小技巧：</p>
+<h4 id="结合上下文阅读代码">结合上下文阅读代码</h4>
+<p>当你阅读代码时，请持续提出问题。 例如，如果一个应用有缓存策略，一个好问题就是：如果键无效了会怎样？缓存中的值如何更新？ 带着这些问题阅读代码，就是结合上下文。或者说因为你有了一个目标，你会变得享受阅读的过程。 你甚至可以自己做一些假设，然后在代码中寻找验证。</p>
+<p>你有点像侦探：<strong>你想发现代码的真相，代码的逻辑，代码是如何像故事一般上下流动的。</strong></p>
+<h4 id="把实例跑起来并与之交互">把实例跑起来并与之交互</h4>
+<p>源码就像乐高积木，只是已经组装好了。 如果你想了解它们是怎么组装在一起的，你需要和它交互，有时甚至要把它拆开。 阅读同一模块的老版本同样有帮助。从<strong>G</strong>it中阅读版本差异，试着弄清楚特定的特性是如何实现的 （修改日志在这个场景很有用）。 举个例子，我发现<strong>L</strong>ua的第一个版本相当简单，这可以帮助我了解作者最初的设计理念。</p>
+<p><strong>Deb</strong>ug是另一种与代码交互的方式。试着在代码中加一些断点（或打印一些变量值）， 然后弄明白打印到控制台中的所有输出。</p>
+<p>如果你对代码了解比较透彻了，试着对代码做一些修改，重新<strong>bui</strong>ld并把它跑起来。 最简单的方式是试着调整配置项，去看不同配置的运行结果。 之后你可以试着添加一些细微的特性。 如果这些特性对其他人也有用，你应该把代码贡献到上游。</p>
+<h4 id="了解数据结构间的关系">了解数据结构间的关系</h4>
+<p>“糟糕的程序员担心代码，优秀的程序员担心数据结构和它们的关系。” -<strong>Lin</strong>us <strong>Torv</strong>alds</p>
+<p>数据结构是一个程序中最重要的元素。用笔或者你喜欢的其他工具画出数据结构间的关系。 这个图就是源码的映射。你会在阅读过程中时常参考这个图。一些工具比如<a href="https://scitools.com/">scitools</a> 可以用来生成UML类图。 （译：这个方法用在写代码中能节约翻<strong>Mod</strong>el声明文件的时间，推荐用纸笔，不占屏幕）</p>
+<h4 id="了解模块间的依赖关系与边界">了解模块间的依赖关系与边界</h4>
+<p>大项目中会包含许多模块，一个模块经常只拥有单一职责。 这有助于我们减少代码复杂度，在适当的层级上做抽象。 模块的接口是抽象的边界，我们可以一个接一个地阅读模块。 如果你在阅读一个使用<strong>Ma</strong>ke构建的C/C++项目，<strong>Make</strong>file是了解模块间如何组织的好切入点。</p>
+<p>边界本身也很有用。优秀的代码组织得很好，变量名与函数名的命名风格体现着可读性。 你不需要阅读全部源文件，你可以<strong>忽略不重要的或你熟悉的部分</strong>。 如果你确定一个模块是仅仅是为了被解析而设计的(<strong>ju</strong>st <strong>desi</strong>gned <strong>f</strong>or <strong>pars</strong>ing)， 那么你已经大致了解了它的功能；那么你就可以跳过不读这个模块。 当然，这将大大节约时间。</p>
+<h4 id="使用测试用例">使用测试用例</h4>
+<p>测试用例也是帮助代码理解的一个很好的补充。<strong>测试用例就是文档。</strong> 当你在阅读一个类时，试着把对应的测试代码一起读了。 测试用例能帮你弄清一个类的接口，和该类的典型用法。 集成测试用例可以让你顺着走过程序的整体流程，适合输入一些特殊值并<strong>deb</strong>ug运行。</p>
+<h4 id="点评">点评</h4>
+<p>为什么不在花了不少时间阅读一个项目后，写一篇代码点评呢？就像写一篇书评一样。 你可以写下代码中好的和不好的部分，还可以记下你从中学到了什么。 攥写这类文章可以帮助你阐明自己的理解，也有助于其他人阅读源码。</p>
+<h2 id="一些好书">一些好书</h2>
+<p>我发现阅读代码是一个远超我想象的广泛话题。没有系统性训练该技能的方法。 总而言之，不断练习，找到你自己的方式。下面是一些帮助你提升代码阅读能力的好书：</p>
+<p><a href="https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612/">《DesignPatterns:ElementsofReusableObject-OrientedSoftware》</a></p>
+<p><a href="https://www.amazon.com/dp/0134494164/">《CleanArchitecture: ACraftsman’sGuidetoSoftwareStructureandDesign》</a></p>
+<p><a href="https://www.amazon.com/How-Read-Book-Classic-Intelligent/dp/0671212095/">《HowtoRead aBook:TheClassicGuidetoIntelligentReading》</a></p>
+<p>个人经验：驱动我“专门读代码”的最大动机是好奇心，和小孩拆小物件为了看内部构造差不多。 学习OO设计模式，我建议阅读<a href="https://book.douban.com/subject/2243615/">《HeadFirst 设计模式》</a> ，这本书超有趣，比四人帮那本删减了一些不常用的模式，但是你能轻松读下去。</p>
+<p>阅读了解项目代码是参与（开源）项目的第一步，希望这篇文章能帮助你参与到心仪的项目中去。 这也可以帮助你在工作中了解同组同事的工作，而“了解同组同事的工作对工作有诸多潜在益处” 。 来吧，花点时间挑一个看上眼的项目（或者就读你手头的项目别人写的部分）， 找到你最感兴趣的功能，读一读它是怎么实现的。</p>
+
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+    <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="topFunction()" title="Go to top">
+        
+        <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+    </svg>
+    <script>
+        let backToTopButton = document.getElementById("btt-button");
+
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        }
+
+        function topFunction() {
+            smoothScrollToTop();
+        }
+
+        function smoothScrollToTop() {
+            const scrollToTop = () => {
+                const c = document.documentElement.scrollTop || document.body.scrollTop;
+                if (c > 0) {
+                    window.requestAnimationFrame(scrollToTop);
+                    window.scrollTo(0, c - c / 8);
+                }
+            };
+            scrollToTop();
+        }
+    </script>
+    
+    
+</div>
+
+<aside class="post-toc">
+    <nav id="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#如何读源码">如何读源码</a>
+          <ul>
+            <li><a href="#预先准备">预先准备</a></li>
+            <li><a href="#流程与技巧">流程与技巧</a>
+              <ul>
+                <li><a href="#结合上下文阅读代码">结合上下文阅读代码</a></li>
+                <li><a href="#把实例跑起来并与之交互">把实例跑起来并与之交互</a></li>
+                <li><a href="#了解数据结构间的关系">了解数据结构间的关系</a></li>
+                <li><a href="#了解模块间的依赖关系与边界">了解模块间的依赖关系与边界</a></li>
+                <li><a href="#使用测试用例">使用测试用例</a></li>
+                <li><a href="#点评">点评</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#一些好书">一些好书</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </nav>
+</aside>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+    <span>&copy; 2024 Taketaketakeru</span>
+    
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/526avijitgupta/gokarna">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>
