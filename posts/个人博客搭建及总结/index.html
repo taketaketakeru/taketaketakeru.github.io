@@ -18,19 +18,19 @@
 
     
     <title>个人博客搭建总结报告</title>
-    <meta name="description" content="如何通过阅读源码进行学习">
+    <meta name="description" content="如何搭建个人博客">
     <meta name="keywords" content='blog, gokarna, hugo, 阅读笔记, 学习方法'>
 
     <meta property="og:url" content="https://taketaketakeru.github.io/posts/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E6%80%BB%E7%BB%93/">
     <meta property="og:type" content="website">
     <meta property="og:title" content="个人博客搭建总结报告">
-    <meta property="og:description" content="如何通过阅读源码进行学习">
+    <meta property="og:description" content="如何搭建个人博客">
     <meta property="og:image" content="https://taketaketakeru.github.io/images/avatar.webp">
     <meta property="og:image:secure_url" content="https://taketaketakeru.github.io/images/avatar.webp">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="个人博客搭建总结报告">
-    <meta name="twitter:description" content="如何通过阅读源码进行学习">
+    <meta name="twitter:description" content="如何搭建个人博客">
     <meta property="twitter:domain" content="https://taketaketakeru.github.io/posts/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E6%80%BB%E7%BB%93/">
     <meta property="twitter:url" content="https://taketaketakeru.github.io/posts/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E6%80%BB%E7%BB%93/">
     <meta name="twitter:image" content="https://taketaketakeru.github.io/images/avatar.webp">
@@ -168,7 +168,7 @@
     <div class="post container">
     <div class="post-header-section">
         <h1>个人博客搭建总结报告</h1>
-        <small role="doc-subtitle">如何通过阅读源码进行学习</small>
+        <small role="doc-subtitle">如何搭建个人博客</small>
         <p class="post-date">一月 19, 2024
         
         </p>
@@ -186,7 +186,7 @@
         <h1 id="博客主题及其选取原因">博客主题及其选取原因</h1>
 <p>框架：Hugo框架</p>
 <p>使用主题：Hugo主题 Gokarna</p>
-<p><img src="image.png" alt="alt text"></p>
+<p><img src="/images/image.png" alt="Local Image"></p>
 <p>主题选取原因：</p>
 <ol>
 <li>
@@ -200,26 +200,26 @@
 <h1 id="博客页面布局及其设计思路">博客页面布局及其设计思路</h1>
 <p>博客分为Home、Posts、Tags、Plans、About五个主要界面，分表表示主页、博客、分类、计划和关于我，并且为博客内容设置了文章详情界面。</p>
 <h3 id="home">Home</h3>
-<p><img src="image-1.png" alt="alt text"></p>
+<p><img src="/images/image-1.png" alt="Local Image"></p>
 <p>在Home界面，上方是导航栏，中间是头像和基本的自我介绍、并包含个人的github和stackoverflow链接，下方是已经发布的热门博客。</p>
 <h3 id="posts">Posts</h3>
-<p><img src="image-2.png" alt="alt text"></p>
+<p><img src="/images/image-2.png" alt="Local Image"></p>
 <p>在Posts界面，会显示已经发布的博客列表，并且按照年份和时间进行显示。点击博客可以进入文章详情页。</p>
 <h4 id="文章详情界面">文章详情界面</h4>
-<p><img src="image-6.png" alt="alt text"></p>
+<p><img src="/images/image-6.png" alt="Local Image"></p>
 <p>在文章详情界面，实现了右侧目录预览，并且提供返回顶部的按钮，方便阅读。</p>
 <h3 id="tags">Tags</h3>
-<p><img src="image-3.png" alt="alt text"></p>
+<p><img src="/images/image-3.png" alt="Local Image"></p>
 <p>对已经发布的文章进行标签管理，点击标签能够列表显示属于该tag的博客列表，点击博客可以进入文章详情页。</p>
 <h3 id="plans">Plans</h3>
-<p><img src="image-4.png" alt="alt text"></p>
+<p><img src="/images/image-4.png" alt="Local Image"></p>
 <p>在Plans界面，主要介绍了个人对学习生活和工作上的一些规划。点击对应标题可以显示详细内容。</p>
 <h3 id="about">About</h3>
-<p><img src="image-5.png" alt="alt text"></p>
+<p><img src="/images/image-5.png" alt="Local Image"></p>
 <p>About界面是关于个人的介绍，表明博客的主题。</p>
 <h3 id="其他功能">其他功能</h3>
 <p>light、dark主题切换。点击右上角的“太阳”图标，可以切换到dark模式，再次点击可切换回light模式。
-<img src="image-7.png" alt="alt text"></p>
+<img src="/images/image-7.png" alt="Local Image"></p>
 <h1 id="博客技术选择与搭建过程">博客技术选择与搭建过程</h1>
 <h3 id="一准备阶段">一、准备阶段</h3>
 <ol>
@@ -252,8 +252,8 @@
 <li>切换到博客的public目录下，依次执行已下命令
 <pre tabindex="0"><code> git init 
  git add .
+ git remote add origin git@github.com:taketaketakeru/taketaketakeru.github.io.git
  git commit -m &#34;first-commit&#34;
- git remote add origin git@github.com:taketaketakeru/taketaketakeru.github.io.git 
  git push -u origin master
 </code></pre>等待，上传成功，进入taketaketakaru.github.io即可正常显示。</li>
 </ol>
