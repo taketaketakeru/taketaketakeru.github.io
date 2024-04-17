@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>个人博客搭建总结报告</title>
+    <meta name="description" content="如何通过阅读源码进行学习">
+    <meta name="keywords" content='blog, gokarna, hugo, 阅读笔记, 学习方法'>
+
+    <meta property="og:url" content="https://taketaketakeru.github.io/posts/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E6%80%BB%E7%BB%93/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="个人博客搭建总结报告">
+    <meta property="og:description" content="如何通过阅读源码进行学习">
+    <meta property="og:image" content="https://taketaketakeru.github.io/images/avatar.webp">
+    <meta property="og:image:secure_url" content="https://taketaketakeru.github.io/images/avatar.webp">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="个人博客搭建总结报告">
+    <meta name="twitter:description" content="如何通过阅读源码进行学习">
+    <meta property="twitter:domain" content="https://taketaketakeru.github.io/posts/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E6%80%BB%E7%BB%93/">
+    <meta property="twitter:url" content="https://taketaketakeru.github.io/posts/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E6%80%BB%E7%BB%93/">
+    <meta name="twitter:image" content="https://taketaketakeru.github.io/images/avatar.webp">
+
+    
+    <link rel="canonical" href="https://taketaketakeru.github.io/posts/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E5%8F%8A%E6%80%BB%E7%BB%93/" />
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.315e3e4471e2465f34b6c92d59edceac6f6b3d3844df51bbaac4e5f7227b04e4.js" integrity="sha256-MV4&#43;RHHiRl80tsktWe3OrG9rPThE31G7qsTl9yJ7BOQ="></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script type="text/javascript">
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://taketaketakeru.github.io/">
+                <img src='/images/avatar.webp' alt="avatar" />
+            </a>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://taketaketakeru.github.io/">Takeru&#39;s Blog</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/"><span data-feather='home'></span> Home </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/posts/"><span data-feather='book'></span> Posts </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/tags/"><span data-feather='tag'></span> Tags </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/plans/"><span data-feather='code'></span> Plans </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://taketaketakeru.github.io/about/"><span data-feather='coffee'></span> About </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span id="dark-theme-toggle-screen-reader-target" class="sr-only"></span>
+                <a>
+                    <span id="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span id="hamburger-menu-toggle-screen-reader-target" class="sr-only">menu</span>
+                <a>
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/"><span data-feather='home'></span> Home </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/posts/"><span data-feather='book'></span> Posts </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/tags/"><span data-feather='tag'></span> Tags </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/plans/"><span data-feather='code'></span> Plans </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://taketaketakeru.github.io/about/"><span data-feather='coffee'></span> About </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span id="dark-theme-toggle-screen-reader-target" class="sr-only">theme</span>
+                    <a>
+                        <span id="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>个人博客搭建总结报告</h1>
+        <small role="doc-subtitle">如何通过阅读源码进行学习</small>
+        <p class="post-date">一月 19, 2024
+        
+        </p>
+
+        <ul class="post-tags">
+        
+            <li class="post-tag"><a href="https://taketaketakeru.github.io/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0">阅读笔记</a></li>
+        
+            <li class="post-tag"><a href="https://taketaketakeru.github.io/tags/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95">学习方法</a></li>
+        
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <h1 id="博客主题及其选取原因">博客主题及其选取原因</h1>
+<p>框架：Hugo框架</p>
+<p>使用主题：Hugo主题 Gokarna</p>
+<p><img src="image.png" alt="alt text"></p>
+<p>主题选取原因：</p>
+<ol>
+<li>
+<p>因为是个人博客设计，首先希望在Home页面能够展示头像、基本信息、进行简要的自我介绍，给人留下好的第一印象；</p>
+</li>
+<li>
+<p>个人博客的界面、排版也不需要过于花哨，做到简洁明了就好，在此基础上再丰富功能和美观。</p>
+<p>在浏览了课程给出的主题网站后，选择了比较适合的主题。</p>
+</li>
+</ol>
+<h1 id="博客页面布局及其设计思路">博客页面布局及其设计思路</h1>
+<p>博客分为Home、Posts、Tags、Plans、About五个主要界面，分表表示主页、博客、分类、计划和关于我，并且为博客内容设置了文章详情界面。</p>
+<h3 id="home">Home</h3>
+<p><img src="image-1.png" alt="alt text"></p>
+<p>在Home界面，上方是导航栏，中间是头像和基本的自我介绍、并包含个人的github和stackoverflow链接，下方是已经发布的热门博客。</p>
+<h3 id="posts">Posts</h3>
+<p><img src="image-2.png" alt="alt text"></p>
+<p>在Posts界面，会显示已经发布的博客列表，并且按照年份和时间进行显示。点击博客可以进入文章详情页。</p>
+<h4 id="文章详情界面">文章详情界面</h4>
+<p><img src="image-6.png" alt="alt text"></p>
+<p>在文章详情界面，实现了右侧目录预览，并且提供返回顶部的按钮，方便阅读。</p>
+<h3 id="tags">Tags</h3>
+<p><img src="image-3.png" alt="alt text"></p>
+<p>对已经发布的文章进行标签管理，点击标签能够列表显示属于该tag的博客列表，点击博客可以进入文章详情页。</p>
+<h3 id="plans">Plans</h3>
+<p><img src="image-4.png" alt="alt text"></p>
+<p>在Plans界面，主要介绍了个人对学习生活和工作上的一些规划。点击对应标题可以显示详细内容。</p>
+<h3 id="about">About</h3>
+<p><img src="image-5.png" alt="alt text"></p>
+<p>About界面是关于个人的介绍，表明博客的主题。</p>
+<h3 id="其他功能">其他功能</h3>
+<p>light、dark主题切换。点击右上角的“太阳”图标，可以切换到dark模式，再次点击可切换回light模式。
+<img src="image-7.png" alt="alt text"></p>
+<h1 id="博客技术选择与搭建过程">博客技术选择与搭建过程</h1>
+<h3 id="一准备阶段">一、准备阶段</h3>
+<ol>
+<li>安装Hugo</li>
+<li>安装git</li>
+</ol>
+<p>网络上已经有很多文章对Hugo和git的安装进行了介绍，这里不再进行赘述。通过hugo version命令和git version命令可以显示是否安装成功。</p>
+<h3 id="二本地调试">二、本地调试</h3>
+<ol>
+<li>
+<p>创建博客目录</p>
+<pre tabindex="0"><code>hugo new site MyBlog
+</code></pre></li>
+<li>
+<p>下载主题到themes目录下</p>
+<pre tabindex="0"><code>git clone https://github.com/526avijitgupta/gokarna.git
+</code></pre></li>
+<li>
+<p>修改配置文档
+按照该主题的Github Repository中的说明修改配置文档。</p>
+</li>
+<li>
+<p>为各个界面添加内容
+在对应目录下添加相应markdown文档。</p>
+</li>
+</ol>
+<h3 id="三上传至github">三、上传至github</h3>
+<ol>
+<li>创建以username.github.io命名的Github Repository</li>
+<li>切换到博客的public目录下，依次执行已下命令
+<pre tabindex="0"><code> git init 
+ git add .
+ git commit -m &#34;first-commit&#34;
+ git remote add origin git@github.com:taketaketakeru/taketaketakeru.github.io.git 
+ git push -u origin master
+</code></pre>等待，上传成功，进入taketaketakaru.github.io即可正常显示。</li>
+</ol>
+<h1 id="博客制作过程中遇到的问题及其解决方法">博客制作过程中遇到的问题及其解决方法</h1>
+<h3 id="问题1-在博客的themes文件夹下修改了配置文件但主题更改不成功">问题1 在博客的themes文件夹下修改了配置文件，但主题更改不成功</h3>
+<p>解决办法： 发现应该修改博客根目录下的配置文件而不是themes文件夹下的配置文件，即在hugo.toml中添加theme = “{自己的主题名称}”，即theme = &ldquo;gokarna&rdquo;</p>
+<h3 id="问题2-本地测试效果与上传github后样式不一致部分功能无法实现缺少lightdark转换的图标">问题2 本地测试效果与上传github后样式不一致，部分功能无法实现（缺少light、dark转换的图标）</h3>
+<p>解决办法：
+在搜索引擎中查找原因后，
+<a href="https://www.jianshu.com/p/60df9a7adc60">https://www.jianshu.com/p/60df9a7adc60</a>
+发现该文章中提及到了“在 Windows 下用 Hugo，LF will be replaced by CRLF，换行符会被回车+换行取代。”而在本地编译过程的过程中，确实也出现了该提示，猜测可能是该原因。因此换到Ubuntu下重新进行开发，解决了该问题。</p>
+<h3 id="问题3-上传github之后点击导航栏中的tags等发现会跳转到本地的httplocalhost1313tags">问题3 上传github之后，点击导航栏中的Tags等，发现会跳转到本地的http://localhost:1313/tags/</h3>
+<p>解决办法：查找public下文件的html代码，发现跳转地址为http://username.github.io/localhost:1313/tags/，非常奇怪，而本地正常跳转，猜测是编译命令出错。使用hugo server命令会导致本地编译，直接使用hugo命令进行编译就能够按照配置文件中的baseURL进行正常的跳转。</p>
+
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+    <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="topFunction()" title="Go to top">
+        
+        <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+    </svg>
+    <script>
+        let backToTopButton = document.getElementById("btt-button");
+
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        }
+
+        function topFunction() {
+            smoothScrollToTop();
+        }
+
+        function smoothScrollToTop() {
+            const scrollToTop = () => {
+                const c = document.documentElement.scrollTop || document.body.scrollTop;
+                if (c > 0) {
+                    window.requestAnimationFrame(scrollToTop);
+                    window.scrollTo(0, c - c / 8);
+                }
+            };
+            scrollToTop();
+        }
+    </script>
+    
+    
+</div>
+
+<aside class="post-toc">
+    <nav id="toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#博客主题及其选取原因">博客主题及其选取原因</a></li>
+    <li><a href="#博客页面布局及其设计思路">博客页面布局及其设计思路</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#posts">Posts</a>
+              <ul>
+                <li><a href="#文章详情界面">文章详情界面</a></li>
+              </ul>
+            </li>
+            <li><a href="#tags">Tags</a></li>
+            <li><a href="#plans">Plans</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#其他功能">其他功能</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#博客技术选择与搭建过程">博客技术选择与搭建过程</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#一准备阶段">一、准备阶段</a></li>
+            <li><a href="#二本地调试">二、本地调试</a></li>
+            <li><a href="#三上传至github">三、上传至github</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#博客制作过程中遇到的问题及其解决方法">博客制作过程中遇到的问题及其解决方法</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#问题1-在博客的themes文件夹下修改了配置文件但主题更改不成功">问题1 在博客的themes文件夹下修改了配置文件，但主题更改不成功</a></li>
+            <li><a href="#问题2-本地测试效果与上传github后样式不一致部分功能无法实现缺少lightdark转换的图标">问题2 本地测试效果与上传github后样式不一致，部分功能无法实现（缺少light、dark转换的图标）</a></li>
+            <li><a href="#问题3-上传github之后点击导航栏中的tags等发现会跳转到本地的httplocalhost1313tags">问题3 上传github之后，点击导航栏中的Tags等，发现会跳转到本地的http://localhost:1313/tags/</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </nav>
+</aside>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+    <span>&copy; 2024 Taketaketakeru</span>
+    
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/526avijitgupta/gokarna">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>
